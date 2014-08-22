@@ -34,7 +34,7 @@ app.controller('MainController', function($rootScope, $scope, analytics){
       return;
     };
     result=json.filter(function(file){ 
-      return file.FileName.indexOf($scope.searchModel) == 0 ;
+      return file.FileName.toLowerCase().indexOf($scope.searchModel.toLowerCase()) >= 0 ;
     });
     $scope.scrollItems=result;
   };
