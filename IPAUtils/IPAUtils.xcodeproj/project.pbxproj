@@ -1,0 +1,290 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		623A0D4C19761691009935A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 623A0D4B19761691009935A3 /* Foundation.framework */; };
+		623A0D4F19761691009935A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 623A0D4E19761691009935A3 /* main.m */; };
+		623A0D6B197620DB009935A3 /* NSError+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 623A0D5E197620DB009935A3 /* NSError+Extensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		623A0D6C197620DB009935A3 /* NXDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 623A0D60197620DB009935A3 /* NXDebug.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		623A0D6D197620DB009935A3 /* NXJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 623A0D62197620DB009935A3 /* NXJsonParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		623A0D6E197620DB009935A3 /* NXJsonSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 623A0D64197620DB009935A3 /* NXJsonSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		623A0D4619761691009935A3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		623A0D4819761691009935A3 /* BundleUtils */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BundleUtils; sourceTree = BUILT_PRODUCTS_DIR; };
+		623A0D4B19761691009935A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		623A0D4E19761691009935A3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		623A0D5119761691009935A3 /* IPAUtils-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IPAUtils-Prefix.pch"; sourceTree = "<group>"; };
+		623A0D5D197620DB009935A3 /* NSError+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Extensions.h"; sourceTree = "<group>"; };
+		623A0D5E197620DB009935A3 /* NSError+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Extensions.m"; sourceTree = "<group>"; };
+		623A0D5F197620DB009935A3 /* NXDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXDebug.h; sourceTree = "<group>"; };
+		623A0D60197620DB009935A3 /* NXDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXDebug.m; sourceTree = "<group>"; };
+		623A0D61197620DB009935A3 /* NXJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXJsonParser.h; sourceTree = "<group>"; };
+		623A0D62197620DB009935A3 /* NXJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXJsonParser.m; sourceTree = "<group>"; };
+		623A0D63197620DB009935A3 /* NXJsonSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXJsonSerializer.h; sourceTree = "<group>"; };
+		623A0D64197620DB009935A3 /* NXJsonSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXJsonSerializer.m; sourceTree = "<group>"; };
+		623A0D65197620DB009935A3 /* NXSerializable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXSerializable.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		623A0D4519761691009935A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				623A0D4C19761691009935A3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		623A0D3F19761690009935A3 = {
+			isa = PBXGroup;
+			children = (
+				623A0D4D19761691009935A3 /* IPAUtils */,
+				623A0D4A19761691009935A3 /* Frameworks */,
+				623A0D4919761691009935A3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		623A0D4919761691009935A3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				623A0D4819761691009935A3 /* BundleUtils */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		623A0D4A19761691009935A3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				623A0D4B19761691009935A3 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		623A0D4D19761691009935A3 /* IPAUtils */ = {
+			isa = PBXGroup;
+			children = (
+				623A0D5C197620DB009935A3 /* Json */,
+				623A0D4E19761691009935A3 /* main.m */,
+				623A0D5019761691009935A3 /* Supporting Files */,
+			);
+			path = IPAUtils;
+			sourceTree = "<group>";
+		};
+		623A0D5019761691009935A3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				623A0D5119761691009935A3 /* IPAUtils-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		623A0D5C197620DB009935A3 /* Json */ = {
+			isa = PBXGroup;
+			children = (
+				623A0D5D197620DB009935A3 /* NSError+Extensions.h */,
+				623A0D5E197620DB009935A3 /* NSError+Extensions.m */,
+				623A0D5F197620DB009935A3 /* NXDebug.h */,
+				623A0D60197620DB009935A3 /* NXDebug.m */,
+				623A0D61197620DB009935A3 /* NXJsonParser.h */,
+				623A0D62197620DB009935A3 /* NXJsonParser.m */,
+				623A0D63197620DB009935A3 /* NXJsonSerializer.h */,
+				623A0D64197620DB009935A3 /* NXJsonSerializer.m */,
+				623A0D65197620DB009935A3 /* NXSerializable.h */,
+			);
+			path = Json;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		623A0D4719761691009935A3 /* BundleUtils */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 623A0D5619761691009935A3 /* Build configuration list for PBXNativeTarget "BundleUtils" */;
+			buildPhases = (
+				623A0D4419761691009935A3 /* Sources */,
+				623A0D4519761691009935A3 /* Frameworks */,
+				623A0D4619761691009935A3 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BundleUtils;
+			productName = IPAUtils;
+			productReference = 623A0D4819761691009935A3 /* BundleUtils */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		623A0D4019761690009935A3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+			};
+			buildConfigurationList = 623A0D4319761691009935A3 /* Build configuration list for PBXProject "IPAUtils" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 623A0D3F19761690009935A3;
+			productRefGroup = 623A0D4919761691009935A3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				623A0D4719761691009935A3 /* BundleUtils */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		623A0D4419761691009935A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				623A0D4F19761691009935A3 /* main.m in Sources */,
+				623A0D6B197620DB009935A3 /* NSError+Extensions.m in Sources */,
+				623A0D6E197620DB009935A3 /* NXJsonSerializer.m in Sources */,
+				623A0D6D197620DB009935A3 /* NXJsonParser.m in Sources */,
+				623A0D6C197620DB009935A3 /* NXDebug.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		623A0D5419761691009935A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		623A0D5519761691009935A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		623A0D5719761691009935A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IPAUtils/IPAUtils-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		623A0D5819761691009935A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IPAUtils/IPAUtils-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		623A0D4319761691009935A3 /* Build configuration list for PBXProject "IPAUtils" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				623A0D5419761691009935A3 /* Debug */,
+				623A0D5519761691009935A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		623A0D5619761691009935A3 /* Build configuration list for PBXNativeTarget "BundleUtils" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				623A0D5719761691009935A3 /* Debug */,
+				623A0D5819761691009935A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 623A0D4019761690009935A3 /* Project object */;
+}
