@@ -1,0 +1,61 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 1 (0x1)
+        Signature Algorithm: sha1WithRSAEncryption
+        Issuer: C=CN, ST=86, L=BEIJING, O=KTPLAY, OU=KTPLAY, CN=ota.ktplay.int/emailAddress=xingbin@ktplay.com
+        Validity
+            Not Before: Aug 25 05:12:51 2014 GMT
+            Not After : Aug 25 05:12:51 2015 GMT
+        Subject: C=CN, ST=86, O=KTPLAY, OU=KTPLAY, CN=ota.ktplay.int/emailAddress=xingbin@ktplay.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (1024 bit)
+                Modulus (1024 bit):
+                    00:a5:a8:61:4e:76:40:2b:bf:48:5b:a5:59:f6:4e:
+                    9c:1f:e1:3a:d6:92:cf:b8:5e:c2:a6:12:2c:89:f4:
+                    c3:85:54:36:41:c9:09:9f:17:98:91:25:07:3d:85:
+                    85:84:09:9e:49:b3:20:43:43:06:20:d8:2b:f8:1c:
+                    5f:1d:8f:7f:4d:82:cd:9e:fc:94:30:63:3a:95:c3:
+                    73:cd:f5:77:cd:5e:97:a0:77:38:7f:f7:b4:8a:c9:
+                    8e:fb:f3:01:98:89:62:0c:14:63:fc:60:9e:cd:ae:
+                    92:ca:e2:e8:91:10:60:a5:5f:22:1f:87:12:fe:ec:
+                    45:10:38:a4:4c:ff:0d:e6:93
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                7D:E8:C1:FE:8A:5C:F5:67:EF:1E:04:86:E4:96:8A:04:FB:56:27:0A
+            X509v3 Authority Key Identifier: 
+                keyid:A2:39:91:7D:2B:32:C0:73:27:77:CF:60:53:69:B2:54:55:52:F5:17
+
+    Signature Algorithm: sha1WithRSAEncryption
+        0e:2d:97:fd:95:ce:a3:d7:c7:18:3f:b8:92:a9:f6:69:a4:27:
+        d3:dd:32:9f:b5:e1:1d:58:39:89:41:ef:2a:fa:35:fa:29:82:
+        d2:8d:c6:75:89:eb:be:13:47:21:25:17:2d:ec:ed:91:6d:24:
+        47:08:f4:99:ca:72:d6:90:01:f9:95:c7:59:08:ce:24:fc:a6:
+        48:0c:e9:1c:3b:91:83:29:39:5e:91:10:50:d8:cd:57:56:9a:
+        cf:57:f4:fd:b1:0d:a5:c3:e2:e9:00:b4:74:d3:ee:9c:da:65:
+        4d:37:72:10:c5:eb:01:91:cb:ff:e9:4e:1c:ff:1b:d6:52:d3:
+        54:36
+-----BEGIN CERTIFICATE-----
+MIIC9DCCAl2gAwIBAgIBATANBgkqhkiG9w0BAQUFADCBijELMAkGA1UEBhMCQ04x
+CzAJBgNVBAgTAjg2MRAwDgYDVQQHEwdCRUlKSU5HMQ8wDQYDVQQKEwZLVFBMQVkx
+DzANBgNVBAsTBktUUExBWTEXMBUGA1UEAxMOb3RhLmt0cGxheS5pbnQxITAfBgkq
+hkiG9w0BCQEWEnhpbmdiaW5Aa3RwbGF5LmNvbTAeFw0xNDA4MjUwNTEyNTFaFw0x
+NTA4MjUwNTEyNTFaMHgxCzAJBgNVBAYTAkNOMQswCQYDVQQIEwI4NjEPMA0GA1UE
+ChMGS1RQTEFZMQ8wDQYDVQQLEwZLVFBMQVkxFzAVBgNVBAMTDm90YS5rdHBsYXku
+aW50MSEwHwYJKoZIhvcNAQkBFhJ4aW5nYmluQGt0cGxheS5jb20wgZ8wDQYJKoZI
+hvcNAQEBBQADgY0AMIGJAoGBAKWoYU52QCu/SFulWfZOnB/hOtaSz7hewqYSLIn0
+w4VUNkHJCZ8XmJElBz2FhYQJnkmzIENDBiDYK/gcXx2Pf02CzZ78lDBjOpXDc831
+d81el6B3OH/3tIrJjvvzAZiJYgwUY/xgns2uksri6JEQYKVfIh+HEv7sRRA4pEz/
+DeaTAgMBAAGjezB5MAkGA1UdEwQCMAAwLAYJYIZIAYb4QgENBB8WHU9wZW5TU0wg
+R2VuZXJhdGVkIENlcnRpZmljYXRlMB0GA1UdDgQWBBR96MH+ilz1Z+8eBIbklooE
++1YnCjAfBgNVHSMEGDAWgBSiOZF9KzLAcyd3z2BTabJUVVL1FzANBgkqhkiG9w0B
+AQUFAAOBgQAOLZf9lc6j18cYP7iSqfZppCfT3TKfteEdWDmJQe8q+jX6KYLSjcZ1
+ieu+E0chJRct7O2RbSRHCPSZynLWkAH5lcdZCM4k/KZIDOkcO5GDKTlekRBQ2M1X
+VprPV/T9sQ2lw+LpALR00+6c2mVNN3IQxesBkcv/6U4c/xvWUtNUNg==
+-----END CERTIFICATE-----

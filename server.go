@@ -18,7 +18,9 @@ import (
 const (
 	ipaName   = ".ipa"
 	plistName = ".plist"
-	plist     = `<?xml version="1.0" encoding="UTF-8"?>
+	apkname   = ".apk"
+	//crtname   = ".crt"
+	plist = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
@@ -191,6 +193,13 @@ func handler(w http.ResponseWriter, r *http.Request) {
 						} else {
 							continue
 						}
+					} else if extension == apkname {
+						fileinfos = append(fileinfos, FileInfo{
+							FileName:   fname,
+							Url:        path.Join(url, fname),
+							CreateTime: element.ModTime().Format("2006-01-02 15:04:05"),
+							Type:       File,
+						})
 					} else {
 						continue
 					}
@@ -267,7 +276,7 @@ func main() {
 	port := "5555"
 	for index, element := range os.Args {
 		if index == 1 {
-			scheme = element
+			scheme = strings.ToLower(element)
 		} else if index == 2 {
 			port = element
 		} else {
@@ -276,5 +285,9 @@ func main() {
 	}
 	http.Handle("/static/", http.FileServer(http.Dir(".")))
 	http.HandleFunc("/", handler)
-	http.ListenAndServe(":"+port, nil)
+	if scheme == "https" {
+		http.ListenAndServeTLS(":"+port, "server.crt", "server.key", nil)
+	} else {
+		http.ListenAndServe(":"+port, nil)
+	}
 }
