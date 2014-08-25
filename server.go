@@ -139,7 +139,6 @@ func makeplistfile(url, plistfile string, data map[string]interface{}) error {
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	url := r.URL.Path
-
 	if url == "/favicon.ico" {
 	} else {
 		urlPath := baseDir + url
@@ -195,8 +194,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 					})
 				} else {
 					extension := filepath.Ext(fname)
+					name := strings.Replace(fname, extension, "", 1)
 					if extension == ipaName || extension == plistName {
-						name := strings.Replace(fname, extension, "", 1)
 						child := headermap[name]
 						if child != nil {
 							*child = append(*child, sampleInfo{Name: fname, CreateTime: element.ModTime()})
@@ -206,7 +205,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 						if extension == plistName {
 							plisturl := scheme + "://" + filepath.Join(r.Host, url, fname)
 							fileinfos = append(fileinfos, FileInfo{
-								FileName:   fname,
+								FileName:   name,
 								Url:        "itms-services://?action=download-manifest&url=" + plisturl,
 								CreateTime: element.ModTime().Format("2006-01-02 15:04:05"),
 								Type:       File,
@@ -216,7 +215,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 						}
 					} else if extension == apkname {
 						fileinfos = append(fileinfos, FileInfo{
-							FileName:   fname,
+							FileName:   name,
 							Url:        path.Join(url, fname),
 							CreateTime: element.ModTime().Format("2006-01-02 15:04:05"),
 							Type:       File,
@@ -251,7 +250,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 						fname := key + plistName
 
 						fileinfos = append(fileinfos, FileInfo{
-							FileName:   fname,
+							FileName:   strings.Replace(fname, ext, "", 1),
 							Url:        "itms-services://?action=download-manifest&url=" + scheme + "://" + path.Join(r.Host, url, fname),
 							CreateTime: saminfo.CreateTime.Format("2006-01-02 15:04:05"),
 							Type:       File,

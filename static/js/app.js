@@ -75,6 +75,14 @@ app.controller('MainController', function($rootScope, $scope, analytics){
   $scope.resetsort=function(){
     $scope.scrollItems = copyJson;
   };
+  var first= json.shift();
+  json=json.sort(function(a,b){
+    // if (a.FileName=='..') {
+    //   return -1;
+    // };
+    return a.CreateTime>b.CreateTime?-1:1;
+    });
+  json.unshift(first)
   copyJson=json.concat();
   $scope.scrollItems = json;
 
