@@ -10,7 +10,7 @@ fi
 
 rm -rf Payload/
 
-unzip  ${IPA_NAME}   > /dev/null
+unzip  "${IPA_NAME}"   > /dev/null
  
 ./BundleUtils -r ./Payload/*.app 
 

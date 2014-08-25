@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -84,7 +85,7 @@ type FileInfo struct {
 	Type       int
 }
 
-func getAppInfo(ipafile string) map[string]interface{} {
+func getAppInfo(ipafile string) (map[string]interface{}, error) {
 	sh := "." + "/genplist.sh"
 	cmd := exec.Command("/bin/sh", sh, ipafile)
 	var out bytes.Buffer
@@ -92,28 +93,48 @@ func getAppInfo(ipafile string) map[string]interface{} {
 
 	err := cmd.Run()
 	if err != nil {
-		fmt.Println("failed.")
+		return nil, err
 	}
 
 	data := make(map[string]interface{}, 20)
 	json.Unmarshal(out.Bytes(), &data)
 
-	return data
+	return data, nil
 }
 
-func makeplistfile(url, plistfile string, data map[string]interface{}) {
+func makeplistfile(url, plistfile string, data map[string]interface{}) error {
+	if data == nil {
+		return errors.New("the map of data is nil")
+	}
+	bundleId := data["CFBundleIdentifier"]
+	version := data["CFBundleVersion"]
+	appName := data["CFBundleName"]
+
+	if &bundleId == nil || &version == nil || &appName == nil {
+		return errors.New("the map of data is nil")
+	}
 	model := Model{
 		Ipa_url:   url,
-		Bundle_id: data["CFBundleIdentifier"].(string),
-		Version:   data["CFBundleVersion"].(string),
-		AppName:   data["CFBundleName"].(string),
+		Bundle_id: bundleId.(string),
+		Version:   version.(string),
+		AppName:   appName.(string),
 	}
 	tem := template.New("plist")
 	tem = template.Must(tem.Parse(plist))
 
-	fd, _ := os.OpenFile(plistfile, os.O_RDWR|os.O_CREATE, 0644)
-	tem.Execute(fd, model)
-	fd.Close()
+	fd, err := os.OpenFile(plistfile, os.O_RDWR|os.O_CREATE, 0644)
+	if err != nil {
+		return err
+	}
+	err = tem.Execute(fd, model)
+	if err != nil {
+		return err
+	}
+	err = fd.Close()
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
@@ -213,11 +234,20 @@ func handler(w http.ResponseWriter, r *http.Request) {
 					ext := filepath.Ext(saminfo.Name)
 					if ext == ipaName {
 						fpath := path.Join(baseDir, url, saminfo.Name)
-						data := getAppInfo(fpath)
+						data, err := getAppInfo(fpath)
+						if err != nil {
+							reportError(w, err)
+							return
+						}
 						plistfile := strings.Replace(fpath, ext, plistName, 1)
 
 						ipaurl := scheme + "://" + filepath.Join(r.Host, url, saminfo.Name)
-						makeplistfile(ipaurl, plistfile, data)
+						err = makeplistfile(ipaurl, plistfile, data)
+
+						if err != nil {
+							reportError(w, err)
+							return
+						}
 						fname := key + plistName
 
 						fileinfos = append(fileinfos, FileInfo{
@@ -231,12 +261,11 @@ func handler(w http.ResponseWriter, r *http.Request) {
 				}
 			}
 
+			jsonbyte, err := json.Marshal(fileinfos)
 			if err != nil {
 				reportError(w, err)
 				return
 			}
-
-			jsonbyte, err := json.Marshal(fileinfos)
 			data := make(map[string]interface{})
 			data["fileinfos"] = string(jsonbyte)
 			databuffer := parseTemplate(indexTem, data)
