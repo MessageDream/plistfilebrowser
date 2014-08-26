@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"os"
 	"os/exec"
@@ -301,6 +302,11 @@ func init() {
 }
 
 func main() {
+	defer func() {
+		if r := recover(); r != nil {
+			log.Printf("Runtime error caught: %v", r)
+		}
+	}()
 	port := "5555"
 	for index, element := range os.Args {
 		if index == 1 {

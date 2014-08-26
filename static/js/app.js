@@ -82,7 +82,7 @@ app.controller('MainController', function($rootScope, $scope, analytics){
     // };
     return a.CreateTime>b.CreateTime?-1:1;
     });
-  json.unshift(first)
+  json.unshift(first);
   copyJson=json.concat();
   $scope.scrollItems = json;
 
