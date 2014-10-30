@@ -9,12 +9,15 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"os/exec"
+	//"os/exec"
 	"path"
 	"path/filepath"
 	"strings"
 	"text/template"
 	"time"
+
+	"github.com/codeskyblue/go-sh"
+	"howett.net/plist"
 )
 
 const (
@@ -22,7 +25,7 @@ const (
 	plistName = ".plist"
 	apkname   = ".apk"
 	//crtname   = ".crt"
-	plist = `<?xml version="1.0" encoding="UTF-8"?>
+	plisttem = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
@@ -86,20 +89,51 @@ type FileInfo struct {
 	Type       int
 }
 
-func getAppInfo(ipafile string) (map[string]interface{}, error) {
-	sh := "." + "/genplist.sh"
-	cmd := exec.Command("/bin/sh", sh, ipafile)
-	var out bytes.Buffer
-	cmd.Stdout = &out
+// func getAppInfo(ipafile string) (map[string]interface{}, error) {
+// 	sh := "." + "/genplist.sh"
+// 	cmd := exec.Command("/bin/sh", sh, ipafile)
+// 	var out bytes.Buffer
+// 	cmd.Stdout = &out
 
-	err := cmd.Run()
+// 	err := cmd.Run()
+// 	if err != nil {
+// 		return nil, err
+// 	}
+
+// 	data := make(map[string]interface{}, 20)
+// 	json.Unmarshal(out.Bytes(), &data)
+
+// 	return data, nil
+// }
+
+func unzip(fpath string) string {
+	unzipeddir := strings.Replace(fpath, filepath.Ext(fpath), "", 1)
+	dir := filepath.Dir(fpath)
+	s := sh.NewSession()
+	s.SetDir(dir)
+	s.Command("unzip", "-q", fpath, "-d", unzipeddir).Run()
+	return unzipeddir
+}
+
+func readPlist(pathdir string) (map[string]interface{}, error) {
+	dir := filepath.Join(pathdir, "Payload")
+	files, err := ioutil.ReadDir(dir)
+	if err != nil {
+		return nil, err
+	}
+	plistpath := filepath.Join(dir, files[0].Name(), "Info.plist")
+
+	content, err := ioutil.ReadFile(plistpath)
 	if err != nil {
 		return nil, err
 	}
 
 	data := make(map[string]interface{}, 20)
-	json.Unmarshal(out.Bytes(), &data)
-
+	_, err = plist.Unmarshal(content, data)
+	if err != nil {
+		return nil, err
+	}
+	os.RemoveAll(pathdir)
 	return data, nil
 }
 
@@ -121,7 +155,7 @@ func makeplistfile(url, plistfile string, data map[string]interface{}) error {
 		AppName:   appName.(string),
 	}
 	tem := template.New("plist")
-	tem = template.Must(tem.Parse(plist))
+	tem = template.Must(tem.Parse(plisttem))
 
 	fd, err := os.OpenFile(plistfile, os.O_RDWR|os.O_CREATE, 0644)
 	if err != nil {
@@ -234,7 +268,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 					ext := filepath.Ext(saminfo.Name)
 					if ext == ipaName {
 						fpath := path.Join(baseDir, url, saminfo.Name)
-						data, err := getAppInfo(fpath)
+						//data, err := getAppInfo(fpath)
+						data, err := readPlist(unzip(fpath))
 						if err != nil {
 							reportError(w, err)
 							return
