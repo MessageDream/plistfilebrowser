@@ -1,6 +1,7 @@
 package main
 
 import (
+	"archive/zip"
 	"bytes"
 	"encoding/json"
 	"errors"
@@ -9,14 +10,12 @@ import (
 	"log"
 	"net/http"
 	"os"
-	//"os/exec"
 	"path"
 	"path/filepath"
 	"strings"
 	"text/template"
 	"time"
 
-	"github.com/codeskyblue/go-sh"
 	"howett.net/plist"
 )
 
@@ -89,52 +88,32 @@ type FileInfo struct {
 	Type       int
 }
 
-// func getAppInfo(ipafile string) (map[string]interface{}, error) {
-// 	sh := "." + "/genplist.sh"
-// 	cmd := exec.Command("/bin/sh", sh, ipafile)
-// 	var out bytes.Buffer
-// 	cmd.Stdout = &out
-
-// 	err := cmd.Run()
-// 	if err != nil {
-// 		return nil, err
-// 	}
-
-// 	data := make(map[string]interface{}, 20)
-// 	json.Unmarshal(out.Bytes(), &data)
-
-// 	return data, nil
-// }
-
-func unzip(fpath string) string {
-	unzipeddir := strings.Replace(fpath, filepath.Ext(fpath), "", 1)
-	dir := filepath.Dir(fpath)
-	s := sh.NewSession()
-	s.SetDir(dir)
-	s.Command("unzip", "-q", fpath, "-d", unzipeddir).Run()
-	return unzipeddir
-}
-
-func readPlist(pathdir string) (map[string]interface{}, error) {
-	dir := filepath.Join(pathdir, "Payload")
-	files, err := ioutil.ReadDir(dir)
+func readPlist(fpath string) (map[string]interface{}, error) {
+	r, err := zip.OpenReader(fpath)
 	if err != nil {
 		return nil, err
 	}
-	plistpath := filepath.Join(dir, files[0].Name(), "Info.plist")
+	defer r.Close()
+	for _, f := range r.File {
+		if f.FileInfo().Name() == "Info.plist" {
+			rc, err := f.Open()
+			if err != nil {
+				return nil, err
+			}
 
-	content, err := ioutil.ReadFile(plistpath)
-	if err != nil {
-		return nil, err
+			content, err := ioutil.ReadAll(rc)
+			if err != nil {
+				return nil, err
+			}
+			data := make(map[string]interface{}, 20)
+			_, err = plist.Unmarshal(content, data)
+			if err != nil {
+				return nil, err
+			}
+			return data, nil
+		}
 	}
-
-	data := make(map[string]interface{}, 20)
-	_, err = plist.Unmarshal(content, data)
-	if err != nil {
-		return nil, err
-	}
-	os.RemoveAll(pathdir)
-	return data, nil
+	return nil, errors.New("no Info.plist")
 }
 
 func makeplistfile(url, plistfile string, data map[string]interface{}) error {
@@ -268,8 +247,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 					ext := filepath.Ext(saminfo.Name)
 					if ext == ipaName {
 						fpath := path.Join(baseDir, url, saminfo.Name)
-						//data, err := getAppInfo(fpath)
-						data, err := readPlist(unzip(fpath))
+						data, err := readPlist(fpath)
 						if err != nil {
 							reportError(w, err)
 							return
