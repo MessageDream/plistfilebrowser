@@ -251,7 +251,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 						fname := key + plistName
 
 						fileinfos = append(fileinfos, FileInfo{
-							FileName:   strings.Replace(fname, ext, "", 1),
+							FileName:   key,
 							Url:        "itms-services://?action=download-manifest&url=" + scheme + "://" + path.Join(r.Host, url, fname),
 							CreateTime: saminfo.CreateTime.Format("2006-01-02 15:04:05"),
 							Type:       File,
