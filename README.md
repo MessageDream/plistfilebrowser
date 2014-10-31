@@ -5,4 +5,4 @@ plistfilebrowser
 ----------
 使用方法：
    1. go build server.go
-   2. ./server https 8080 /ipadir (https或者http,8080为端口号,/ipadir是存放ipa文件的目录，必须是绝对路径)
+   2. ./server https 8080 /ipadir (https或者http,8080为端口号,/ipadir是存放ipa文件的目录，必须是绝对路径，如果使用https 证书文件必须命名为server.key和server.crt)
