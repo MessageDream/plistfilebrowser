@@ -23,8 +23,8 @@ const (
 	ipaName   = ".ipa"
 	plistName = ".plist"
 	apkname   = ".apk"
-	//crtname   = ".crt"
-	plisttem = `<?xml version="1.0" encoding="UTF-8"?>
+	crtname   = ".crt"
+	plisttem  = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
@@ -227,7 +227,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 						} else {
 							continue
 						}
-					} else if extension == apkname {
+					} else if extension == apkname || extension == crtname {
 						fileinfos = append(fileinfos, FileInfo{
 							FileName:   name,
 							Url:        path.Join(url, fname),
