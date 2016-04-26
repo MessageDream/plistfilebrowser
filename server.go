@@ -16,7 +16,7 @@ import (
 	"text/template"
 	"time"
 
-	"howett.net/plist"
+	 plist "github.com/DHowett/go-plist"
 )
 
 const (
@@ -110,6 +110,9 @@ func readPlist(fpath string) (map[string]interface{}, error) {
 			if err != nil {
 				return nil, err
 			}
+			if data["UIStoryboardVersion"] != nil{
+				continue
+			}
 			return data, nil
 		}
 	}
@@ -153,6 +156,7 @@ func makeplistfile(url, plistfile string, data map[string]interface{}) error {
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	url := r.URL.Path
+
 	if url == "/favicon.ico" {
 	} else {
 		urlPath := baseDir + url
@@ -284,6 +288,11 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			databuffer := parseTemplate(indexTem, data)
 			w.Write(databuffer)
 		case mode&os.ModeType == 0:
+			// if filepath.Ext(urlPath) == ".plist"  {
+			// 	w.Header().Add("Content-Type","text/xml")
+			// }else{
+			// 	w.Header().Add("Content-Type","application/octet-stream")
+			// }
 			http.ServeFile(w, r, urlPath)
 		}
 	}
