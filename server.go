@@ -110,7 +110,7 @@ func readPlist(fpath string) (map[string]interface{}, error) {
 			if err != nil {
 				return nil, err
 			}
-			if data["UIStoryboardVersion"] != nil{
+			if data["UISupportedInterfaceOrientations"] == nil{
 				continue
 			}
 			return data, nil
